@@ -16,11 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views as views_blog
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap
+sitemaps = {
+    'posts': PostSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
+    
     path('', views_blog.home, name='home'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     #
     path('emp', views_blog.emp),  
@@ -28,5 +35,6 @@ urlpatterns = [
     path('edit/<int:id>', views_blog.edit),  
     path('update/<int:id>', views_blog.update),  
     path('delete/<int:id>', views_blog.destroy),  
-
+    
+    path('account/', include('account.urls')),
 ]

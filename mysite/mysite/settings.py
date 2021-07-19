@@ -27,17 +27,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.postgres',
+
+    #
     'blog',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +83,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test_project_db',
+        'USER': 'django_aws_demo',
+        'PASSWORD': 'merdaccia77$',
+        'HOST': 'django-aws-demo.c7mk8lycyaay.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+        
+        
     }
 }
 

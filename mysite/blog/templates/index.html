@@ -35,14 +35,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="">Home</a>
           </li>
+                
+          {% if user.is_authenticated %}
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="admin">Admin</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="blog">Blog</a>
           </li>
-                  
-
+        
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu Gestione Impiegati
@@ -57,6 +59,15 @@
           <li class="nav-item">
             <a class="nav-link" href="contatti">Contattaci</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout">Logout</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/account/login">Login</a>
+          </li>
+          {% endif %}
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
