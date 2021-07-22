@@ -28,6 +28,10 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
+    path('shop/', include('shop.urls', namespace='shop')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
+
        
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
@@ -40,6 +44,9 @@ urlpatterns = [
     path('delete/<int:id>', views_blog.destroy),  
     
     path('account/', include('account.urls')),
+
+    path('social-auth/',include('social_django.urls', namespace='social')),
+
 ]
 
 if settings.DEBUG:

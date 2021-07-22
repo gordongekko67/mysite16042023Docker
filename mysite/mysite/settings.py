@@ -25,7 +25,7 @@ SECRET_KEY = '^m%5#6yg#j7-fawfl&0ebm@*2r_n@q+*c9u(pnpr7*%h1#&_8w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 SITE_ID = 1
 # Application definition
@@ -42,9 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.postgres',
 
+    'social_django',
+    'taggit',
     #
     'blog',
-    'taggit',
+    'shop',
+    'cart',
+    'orders',
+    
+    #
+    'django_extensions',
+    
+    
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -145,3 +156,13 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+CART_SESSION_ID = 'cart'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+]
+
