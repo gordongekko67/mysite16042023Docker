@@ -31,7 +31,8 @@ urlpatterns = [
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
-
+    path('payment/', include('payment.urls', namespace='payment')),
+    path('iot/',     include('funzioniiot.urls', namespace='funzioniiot')),
        
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

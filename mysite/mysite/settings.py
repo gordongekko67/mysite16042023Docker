@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'payment',
+    'funzioniiot',
     
     #
     'django_extensions',
@@ -166,3 +168,15 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'gkmpkv9ky9hv66p4'   # Merchant ID
+BRAINTREE_PUBLIC_KEY  = 'wwcjjfdc7s955gt4'   # Public Key
+BRAINTREE_PRIVATE_KEY = '3f447c2d96c5bed5bb8e1d9ce282dd03'  # Private key
+
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
