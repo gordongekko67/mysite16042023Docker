@@ -193,3 +193,10 @@ BRAINTREE_CONF = braintree.Configuration(
 
 #
 print ("base dir path", BASE_DIR)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIAUOUFIX6TAHIK5JOG'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'mysite-django-1234'
+AWS_QUERYSTRING_AUTH = False
