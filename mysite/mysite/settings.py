@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^m%5#6yg#j7-fawfl&0ebm@*2r_n@q+*c9u(pnpr7*%h1#&_8w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  True
+DEBUG =  False
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     'social_django',
     'taggit',
+    'rest_framework',
+    'django_extensions',
+    
     #
     'blog',
     'shop',
@@ -54,8 +57,7 @@ INSTALLED_APPS = [
     'funzioniiot',
     
     #
-    'django_extensions',
-    
+  
     
 
 ]
@@ -191,8 +193,8 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PRIVATE_KEY
 )
 
-#
-print ("base dir path", BASE_DIR)
+
+
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 

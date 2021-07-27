@@ -20,6 +20,7 @@ from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from django.conf import settings
 from django.conf.urls.static import static
+from funzioniiot import views  as views_app_iot
 
 sitemaps = {
     'posts': PostSitemap,
@@ -33,7 +34,14 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('iot/',     include('funzioniiot.urls', namespace='funzioniiot')),
-       
+    path('contattaci', views_app_iot.hellocontattaci),
+
+    # funzioni Iot
+    path('httpResponse', views_app_iot.http_response), 
+    path('chiamataRequestGet', views_app_iot.chiamata_request_get),  
+    path('chiamataRequestPayload', views_app_iot.chiamata_request_payload),
+    path('risposta_endpoint', views_app_iot.risposta_endpoint),   
+    #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
@@ -47,6 +55,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
 
     path('social-auth/',include('social_django.urls', namespace='social')),
+    
 
 ]
 
