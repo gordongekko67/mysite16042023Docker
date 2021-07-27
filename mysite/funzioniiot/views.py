@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-JsonResponse
+
 import requests
 from funzioniiot.models import Titoli2
+from .forms import FormContatto
 
 # Create your views here.
 
