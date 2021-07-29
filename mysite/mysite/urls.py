@@ -57,6 +57,7 @@ urlpatterns = [
     path('drf', include('snippets.urls')),
 
     path('social-auth/',include('social_django.urls', namespace='social')),
+    #url(r'^$', homepage, name='home'),
     
 
 ]
