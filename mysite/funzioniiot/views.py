@@ -1,15 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse,JsonResponse
-
+from django.http import HttpResponse, JsonResponse
 import requests
-from funzioniiot.models import Titoli2
 from .forms import FormContatto
+
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from .models import Snippet
+from .serializers import SnippetSerializer
 
 # Create your views here.
 
 
 def homeiot(request):
     return render(request, "funzioniiot/scelta.html")
+
 
 def hellocontattaci(request):
     if request.method == 'POST':
@@ -24,7 +28,6 @@ def hellocontattaci(request):
         form = FormContatto()
     context = {"form": form}
     return render(request, "funzioniiot/contattaci.html", context)
-
 
 
 def http_response(request):
@@ -65,42 +68,48 @@ def risposta_endpoint(request):
     response = JsonResponse(data2)
     print(response)
     return HttpResponse(response, content_type='text/plain')
-"""
-@api_view(['GET'])
-def cliente_collection(request):
-    cli = Cliente.objects.all()
-    serializer = ClienteSerializer(cli, many=True)
-    print(serializer.data)
-    content = JSONRenderer().render(serializer.data)
-    print(content)
-    #
-
-    
-    
-    stream = io.BytesIO(content)
-    data = JSONParser().parse(stream)
-
-    serializer = ClienteSerializer(data=data)
-    #serializer.is_valid()
-    # True
-    serializer.validated_data
-    # OrderedDict([('title', ''), ('code', 'print("hello, world")\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])
-    serializer.save()
-
-    return Response(serializer.data)
 
 
-def redis_tutorial(request):
-    r = redis.Redis()
-    r.mset({"Croatia": "Zagreb", "Bahamas": "Nassau"})
-    r.get("Bahamas")
-    today = datetime.date.today()
-    visitors = {"dan", "jon", "alex"}
-    stoday = today.isoformat()  # Python 3.7+, or use str(today)
-    r.sadd(stoday, *visitors)  # sadd: set-add
-    r.smembers(stoday)
-    a = r.scard(today.isoformat())
-    r.set('count',1)
-    r.incr('count')
+@csrf_exempt
+def snippet_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        snippets = Snippet.objects.all()
+        serializer = SnippetSerializer(snippets, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
-   """
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = SnippetSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def snippet_detail(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        snippet = Snippet.objects.get(pk=pk)
+    except Snippet.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = SnippetSerializer(snippet)
+        return JsonResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = SnippetSerializer(snippet, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        snippet.delete()
+        return HttpResponse(status=204)

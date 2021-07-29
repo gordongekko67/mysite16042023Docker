@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'orders',
     'payment',
     'funzioniiot',
+    'drf',
+    'snippets',
+    
     
     #
   

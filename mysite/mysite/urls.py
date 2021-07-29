@@ -53,6 +53,8 @@ urlpatterns = [
     path('delete/<int:id>', views_blog.destroy),  
     
     path('account/', include('account.urls')),
+    
+    path('drf', include('snippets.urls')),
 
     path('social-auth/',include('social_django.urls', namespace='social')),
     

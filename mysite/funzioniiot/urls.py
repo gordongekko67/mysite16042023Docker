@@ -4,5 +4,6 @@ from . import views
 app_name = 'funzioniiot'
 urlpatterns = [
     path('', views.homeiot, name='homeiot'),
+   
     
 ]

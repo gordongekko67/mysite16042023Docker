@@ -19,11 +19,11 @@ def user_login(request):
                 if user.is_active:
                     login(request, user)
                     return redirect('/')
-                    """
+                    
                     return HttpResponse('Authenticated '
                                         'successfully')
-                            return redirect('/')    
-                            """       
+                        
+                                
                 else:
                     return HttpResponse('Disabled account')
             else:
