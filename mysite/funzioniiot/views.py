@@ -5,7 +5,7 @@ from .forms import FormContatto
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from .models import Snippet
+from .models import Snippet, Titoli2
 from .serializers import SnippetSerializer
 
 # Create your views here.
