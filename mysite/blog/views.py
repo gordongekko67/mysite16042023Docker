@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage,\
     PageNotAnInteger
+from django.http import HttpResponse, JsonResponse
 
 from .forms import EmailPostForm, CommentForm, SearchForm
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -114,6 +115,7 @@ def post_search(request):
 
 def home(request):
     return render(request, 'index.html')
+    
 
 # Create your views here.
 

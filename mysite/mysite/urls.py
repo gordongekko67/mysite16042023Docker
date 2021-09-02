@@ -34,6 +34,7 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('iot/',     include('funzioniiot.urls', namespace='funzioniiot')),
+    path('utilitaazioni/', include('utilitaazioni.urls')),
     path('contattaci', views_app_iot.hellocontattaci),
 
     # funzioni Iot
@@ -41,6 +42,8 @@ urlpatterns = [
     path('chiamataRequestGet', views_app_iot.chiamata_request_get),  
     path('chiamataRequestPayload', views_app_iot.chiamata_request_payload),
     path('risposta_endpoint', views_app_iot.risposta_endpoint),   
+    path('lanciaclasse', views_app_iot.lanciaclass),   
+    path('websocketclient', views_app_iot.websocketclient), 
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

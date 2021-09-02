@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
 from .forms import FormContatto
+import asyncio
+import websockets
+import _thread
+import time
+
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -9,6 +14,7 @@ from .models import Snippet, Titoli2
 from .serializers import SnippetSerializer
 
 # Create your views here.
+
 
 
 def homeiot(request):
@@ -70,6 +76,32 @@ def risposta_endpoint(request):
     return HttpResponse(response, content_type='text/plain')
 
 
+def websocketclient(request):
+    
+    return render(request, "funzioniiot/websocketclient.html")
+    
+def on_message(ws, message):
+    print(message)
+
+def on_error(ws, error):
+    print(error)
+
+def on_close(ws, close_status_code, close_msg):
+    print("### closed ###")
+
+def on_open(ws):
+    def run(*args):
+        for i in range(3):
+            time.sleep(1)
+            ws.send("Hello %d" % i)
+        time.sleep(1)
+        ws.close()
+        print("thread terminating...")
+    _thread.start_new_thread(run, ())
+
+
+
+
 @csrf_exempt
 def snippet_list(request):
     """
@@ -113,3 +145,41 @@ def snippet_detail(request, pk):
     elif request.method == 'DELETE':
         snippet.delete()
         return HttpResponse(status=204)
+
+
+
+# class in Python
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+
+class Dog:
+     
+    # A simple class
+    # attribute
+    attr1 = "mammal"
+    attr2 = "dog"
+ 
+    # A sample method 
+    def fun(self):
+        print("I'm a", self.attr1)
+        print("I'm a", self.attr2)
+
+class Student(Person):
+  pass
+
+def lanciaclass():
+    Rodger = Dog()
+ 
+    # Accessing class attributes
+    # and method through objects
+    print(Rodger.attr1)
+    Rodger.fun()
+    d1 = Dog()
+    print(p1.name)
+
+
+
+
