@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         
@@ -120,13 +120,13 @@ DATABASES = {
         'NAME': 'test_project_db',
         'USER': 'django_aws_demo',
         'PASSWORD': 'merdaccia77$',
-        'HOST': 'django-aws-demo.c7mk8lycyaay.us-east-1.rds.amazonaws.com',
+        'HOST' : 'django-aws-demo.cqadw0smwq8c.eu-central-1.rds.amazonaws.com',
         'PORT': '5432',
         
         
     }
 }
-"""
+
 
 
 DATABASES = {
@@ -135,7 +135,7 @@ DATABASES = {
         'NAME': 'mydatabase',
     }
 }
-
+"""
 
 
 # Password validation
