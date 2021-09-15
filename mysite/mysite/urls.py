@@ -44,6 +44,7 @@ urlpatterns = [
     path('risposta_endpoint', views_app_iot.risposta_endpoint),   
     path('lanciaclasse', views_app_iot.lanciaclass),   
     path('websocketclient', views_app_iot.websocketclient), 
+    path('mqttClient', views_app_iot.mqttclient), 
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

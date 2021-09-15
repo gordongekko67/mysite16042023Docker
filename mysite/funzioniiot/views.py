@@ -6,6 +6,7 @@ import asyncio
 import websockets
 import _thread
 import time
+import paho.mqtt.client as mqtt
 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -77,9 +78,47 @@ def risposta_endpoint(request):
 
 
 def websocketclient(request):
-    
-    return render(request, "funzioniiot/websocketclient.html")
-    
+      
+    return render(request, "funzioniiot/websocketclient2.html")
+
+def on_connectmqtt(client, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
+    # Subscribing in on_connect() means that if we lose the connection and
+    # reconnect then subscriptions will be renewed.
+    client.subscribe("$SYS/#")
+
+def on_messagemqtt(client, userdata, msg):
+    print(msg.topic+" "+str(msg.payload))
+
+def mqttclient(request):
+    client = mqtt.Client()
+    client.on_connect = on_connectmqtt
+    client.on_message = on_messagemqtt
+
+    client.username_pw_set("fkjqkoul","wK0aUWpQWS35")
+    client.connect("tailor.cloudmqtt.com", 16434 , 60 )
+    client.subscribe("Tutorial2/#", 1)
+
+    client.publish("Tutorial2", "Getting started with MQTT TEST")
+    print("prova")
+    time.sleep(1)
+    while True:
+        client.publish("Tutorial2", "Loop publishing")
+        client.on_message = on_messagemqtt
+        print("publish")
+        time.sleep(15)
+
+
+    client.loop_stop()
+    client.disconnect()
+
+
+
+
+
+
+
+
 def on_message(ws, message):
     print(message)
 
