@@ -12,9 +12,13 @@ import paho.mqtt.client as mqtt
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .models import Snippet, Titoli2
-from .serializers import SnippetSerializer
+from .serializers import SnippetSerializer, Titoli2Serializer
+from rest_framework import viewsets
 
-# Create your views here.
+
+class Titoli2View(viewsets.ModelViewSet):
+    serializer_class = Titoli2Serializer
+    queryset = Titoli2.objects.all()
 
 
 
@@ -78,8 +82,7 @@ def risposta_endpoint(request):
 
 
 def websocketclient(request):
-      
-    return render(request, "funzioniiot/websocketclient2.html")
+    return render(request, "funzioniiot/websocketclient3.html")
 
 def on_connectmqtt(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))

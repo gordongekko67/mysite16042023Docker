@@ -21,6 +21,11 @@ from blog.sitemaps import PostSitemap
 from django.conf import settings
 from django.conf.urls.static import static
 from funzioniiot import views  as views_app_iot
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'titoli2', views_app_iot.Titoli2View, 'todos')
+
 
 sitemaps = {
     'posts': PostSitemap,
@@ -36,6 +41,8 @@ urlpatterns = [
     path('iot/',     include('funzioniiot.urls', namespace='funzioniiot')),
     path('utilitaazioni/', include('utilitaazioni.urls')),
     path('contattaci', views_app_iot.hellocontattaci),
+    path('snippet/', include('snippets.urls')),
+    path('api/', include(router.urls)),
 
     # funzioni Iot
     path('httpResponse', views_app_iot.http_response), 
@@ -45,6 +52,7 @@ urlpatterns = [
     path('lanciaclasse', views_app_iot.lanciaclass),   
     path('websocketclient', views_app_iot.websocketclient), 
     path('mqttClient', views_app_iot.mqttclient), 
+    path('djangoRestFramework', include('snippets.urls')),
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

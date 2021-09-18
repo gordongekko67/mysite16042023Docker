@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
     'rest_framework',
+    'corsheaders',
     'django_extensions',
     'crispy_forms',
     
@@ -75,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -229,3 +231,7 @@ AWS_ACCESS_KEY_ID  = 'AKIAUOUFIX6TDTQ6XC3Q'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'mysite-django-1234'
 AWS_QUERYSTRING_AUTH = False
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
