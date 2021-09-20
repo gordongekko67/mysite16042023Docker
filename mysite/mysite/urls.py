@@ -53,6 +53,8 @@ urlpatterns = [
     path('websocketclient', views_app_iot.websocketclient), 
     path('mqttClient', views_app_iot.mqttclient), 
     path('djangoRestFramework', include('snippets.urls')),
+    path('rpccallpi400', views_app_iot.rpgcallpi400),
+    path('comandivocali', views_app_iot.comandivocali),
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
