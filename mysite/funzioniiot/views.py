@@ -9,13 +9,15 @@ import time
 import paho.mqtt.client as mqtt
 import rpyc
 import speech_recognition as sr
+import redis
+import random
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .models import Snippet, Titoli2
 from .serializers import SnippetSerializer, Titoli2Serializer
 from rest_framework import viewsets
-
+from django.conf import settings
 
 class Titoli2View(viewsets.ModelViewSet):
     serializer_class = Titoli2Serializer
@@ -239,5 +241,40 @@ def lanciaclass():
     print(p1.name)
 
 
+def redis_tutorial(request):
+    # connect to redis
+    r = redis.Redis(host=settings.REDIS_HOST,
+                port=settings.REDIS_PORT,
+                db=settings.REDIS_DB)
+    
+    total_views = r.incr("counter1")
+    num_task =  r.lrange("Array1", 0, 1000)
+   
+    valore = random.randint(0,1) 
+   
+    if (valore == 0):
+         print("push")
+         total_task  = r.rpush("Array1", "elemento")
+         
+    elif (valore == 1):
+         print("pop")   
+         total_task  = r.rpoplpush("Array1", "elemento")
+         
 
+    return render(request, "funzioniiot/test_redis.html", {'total_views': total_views,'total_task':total_task, 'num_task':num_task})
+    
 
+def servomotor(request):
+    servo = Servo(25)
+
+    try:
+	    while True:
+        	servo.min()
+        	sleep(0.5)
+        	servo.mid()
+        	sleep(0.5)
+        	servo.max()
+          
+    except KeyboardInterrupt:
+	        print("Program stopped")
+    return HttpResponse("<h1> Fine test  servomotor +</h1>")

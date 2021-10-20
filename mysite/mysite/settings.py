@@ -239,3 +239,8 @@ AWS_QUERYSTRING_AUTH = False
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

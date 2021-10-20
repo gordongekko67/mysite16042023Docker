@@ -60,8 +60,8 @@
                 <td>{{ employee.eemail }}</td>
                 <td>{{ employee.econtact }}</td>
                 <td>
-                    <a href="/edit/{{ employee.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
-                    <a href="/delete/{{ employee.id }}">Delete</a>
+                    <a href="/edit/{{ employee.id }}" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                    <a href="/delete/{{ employee.id }}" class="btn btn-primary">Delete</a>
                 </td>
             </tr>
             {% endfor %}
