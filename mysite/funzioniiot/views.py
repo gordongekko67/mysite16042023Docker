@@ -278,3 +278,14 @@ def servomotor(request):
     except KeyboardInterrupt:
 	        print("Program stopped")
     return HttpResponse("<h1> Fine test  servomotor +</h1>")
+
+
+def scrittura_ThingSpeak(request):
+    import urllib.request
+
+    msg=str("678")
+    msg = msg.replace(' ', "%20")
+    msg = msg.replace('\n', "%0A")
+    b=urllib.request.urlopen('https://api.thingspeak.com/update?api_key=61HO3DFEOHWUHT4I&field1='+msg)
+
+    return HttpResponse("<h1> Fine test  ThingSpeak</h1>")

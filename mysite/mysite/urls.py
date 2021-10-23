@@ -56,6 +56,8 @@ urlpatterns = [
     path('rpccallpi400', views_app_iot.rpgcallpi400),
     path('comandivocali', views_app_iot.comandivocali),
     path('redis_tutorial', views_app_iot.redis_tutorial),
+    path('scrittura_ThingSpeak', views_app_iot.scrittura_ThingSpeak),
+           
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
