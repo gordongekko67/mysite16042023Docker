@@ -289,3 +289,41 @@ def scrittura_ThingSpeak(request):
     b=urllib.request.urlopen('https://api.thingspeak.com/update?api_key=61HO3DFEOHWUHT4I&field1='+msg)
 
     return HttpResponse("<h1> Fine test  ThingSpeak</h1>")
+
+def scrittura_Aws_Iot_Mqtt_curl(request):
+    #os.system("curl --tlsv1.2 --cacert x590.pem --cert 23ae1de8d1-certificate.pem.crt --key 23ae1de8d1-private.pem.key --request POST --data "{ \"message"\: \"Hello, world\" }"  "https://a1ck460w3itrep-ats.iot.eu-central-1.amazonaws.com:8443/topics/test?qos=1" ")
+    return HttpResponse("<h1> Fine  scrittura Aws Iot </h1>")
+
+
+def scrittura_Aws_Iot_Mqtt_python(request):
+    # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+    # SPDX-License-Identifier: MIT-0
+
+    import time as t
+    import json
+    import AWSIoTPythonSDK.MQTTLib as AWSIoTPyMQTT
+
+    # Define ENDPOINT, CLIENT_ID, PATH_TO_CERTIFICATE, PATH_TO_PRIVATE_KEY, PATH_TO_AMAZON_ROOT_CA_1, MESSAGE, TOPIC, and RANGE
+    ENDPOINT = "a1ck460w3itrep-ats.iot.eu-central-1.amazonaws.com"
+    CLIENT_ID = "306295914406"
+    PATH_TO_CERTIFICATE = "/home/enrico/Documenti/certificati_aws_iot/23ae1de8d1-certificate.pem.crt"
+    PATH_TO_PRIVATE_KEY = "/home/enrico/Documenti/certificati_aws_iot/23ae1de8d1-private.pem.key"
+    PATH_TO_AMAZON_ROOT_CA_1 = "/home/enrico/Documenti/certificati_aws_iot/x590.pem"
+    MESSAGE = "Hello World"
+    TOPIC = "test/testing"
+    RANGE = 20
+
+    myAWSIoTMQTTClient = AWSIoTPyMQTT.AWSIoTMQTTClient(CLIENT_ID)
+    myAWSIoTMQTTClient.configureEndpoint(ENDPOINT, 8883)
+    myAWSIoTMQTTClient.configureCredentials(PATH_TO_AMAZON_ROOT_CA_1, PATH_TO_PRIVATE_KEY, PATH_TO_CERTIFICATE)
+
+    myAWSIoTMQTTClient.connect()
+    print('Begin Publish')
+    for i in range (RANGE):
+        data = "{} [{}]".format(MESSAGE, i+1)
+        message = {"message" : data}
+        myAWSIoTMQTTClient.publish(TOPIC, json.dumps(message), 1) 
+        print("Published: '" + json.dumps(message) + "' to the topic: " + "'test/testing'")
+        t.sleep(0.1)
+    print('Publish End')
+    myAWSIoTMQTTClient.disconnect()

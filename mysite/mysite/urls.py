@@ -43,6 +43,7 @@ urlpatterns = [
     path('contattaci', views_app_iot.hellocontattaci),
     path('snippet/', include('snippets.urls')),
     path('api/', include(router.urls)),
+    path('polls/', include('polls.urls')),
 
     # funzioni Iot
     path('httpResponse', views_app_iot.http_response), 
@@ -57,7 +58,8 @@ urlpatterns = [
     path('comandivocali', views_app_iot.comandivocali),
     path('redis_tutorial', views_app_iot.redis_tutorial),
     path('scrittura_ThingSpeak', views_app_iot.scrittura_ThingSpeak),
-           
+    path('scrittura_Aws_Iot_Mqtt_curl', views_app_iot.scrittura_Aws_Iot_Mqtt_curl),
+    path('scrittura_Aws_Iot_Mqtt_python', views_app_iot.scrittura_Aws_Iot_Mqtt_python),
     #
     path('', views_blog.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
