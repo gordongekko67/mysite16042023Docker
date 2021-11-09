@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = True
 DEBUG = config('DEBUG', cast=bool) 
 
 
@@ -230,9 +231,8 @@ BRAINTREE_CONF = braintree.Configuration(
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-#AWS_ACCESS_KEY_ID = 'AKIAUOUFIX6TAHIK5JOG'
-AWS_ACCESS_KEY_ID  = 'AKIAUOUFIX6TDTQ6XC3Q'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID  = 'AKIAUOUFIX6TLNM7CNDA'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'mysite-django-1234'
 AWS_QUERYSTRING_AUTH = False
 
