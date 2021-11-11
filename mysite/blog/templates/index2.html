@@ -39,6 +39,17 @@
         </div>
       </nav>
 
+
+      <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>     insert Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
     
     <form method="POST" class="post-form" action="/emp">
         {% csrf_token %}
@@ -76,8 +87,8 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label"></label>
-                <button class="btn btn-primary"  href="/show">Indietro</button>  
                 <div class="col-sm-4">
+                    <button class="btn btn-primary"  href="/show">Indietro</button>  
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
