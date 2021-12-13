@@ -126,6 +126,16 @@ def rpgcallpi400(request):
     conn.execute('import math')
     conn.eval('2*math.pi')
 
+def grpgcallpi400(request):
+    conn = rpyc.classic.connect("localhost")
+    conn.execute("print('Hello from Tutorialspoint')")
+ 
+    conn.execute('import math')
+    conn.eval('2*math.pi')
+
+
+
+
 def comandivocali(request):
     r = sr.Recognizer()
     with sr.Microphone() as source:                # use the default microphone as the audio source
