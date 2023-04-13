@@ -120,19 +120,18 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'), 
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-               
-        
-    }
+        'NAME': 'demo_1',
+        'USER': 'arno',
+        'PASSWORD': 'Merdaccia77$',
+        'HOST': 'database-1.ckbcxoj3i40v.eu-central-1.rds.amazonaws.com',
+        'PORT': '5432',
+     }
 }
+
 
 
 """
@@ -175,7 +174,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+#USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
