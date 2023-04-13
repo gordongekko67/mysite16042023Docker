@@ -1,10 +1,11 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm,  UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 
 def user_login(request):
@@ -29,7 +30,7 @@ def user_login(request):
                     return HttpResponse('Disabled account')
             else:
                 return HttpResponse('Invalid login')
-        return redirect('/')
+        return  redirect('/home')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
