@@ -243,6 +243,6 @@ CORS_ORIGIN_WHITELIST = [
 #REDIS_HOST = 'localhost'
 #REDIS_PORT = 6379
 #REDIS_DB = 0
-REDIS_HOST = 'demo-redis.dzygwu.0001.euc1.cache.amazonaws.com'
+REDIS_HOST = 'arn:aws:elasticache:eu-central-1:449391428490:replicationgroup:demo-redis'
 REDIS_PORT = 6379
 REDIS_DB = 0
