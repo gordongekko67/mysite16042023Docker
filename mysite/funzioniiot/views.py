@@ -101,7 +101,7 @@ def mqttclient(request):
     client.on_connect = on_connectmqtt
     client.on_message = on_messagemqtt
 
-    client.username_pw_set("fkjqkoul","wK0aUWpQWS35")
+    client.username_pw_set("fkjqkoul","szPCIDWWkiyM")
     client.connect("tailor.cloudmqtt.com", 16434 , 60 )
     client.subscribe("Tutorial2/#", 1)
 
